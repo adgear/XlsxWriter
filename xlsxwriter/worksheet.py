@@ -2762,6 +2762,10 @@ class Worksheet(xmlwriter.XMLwriter):
 
             col_id += 1
 
+        # Store the column id that have a formula.
+        col_formulas = [col['id'] for col in table['columns']
+                        if col['formula'] != '']
+
         # Write the cell data if supplied.
         if 'data' in options:
             data = options['data']
@@ -2771,12 +2775,16 @@ class Worksheet(xmlwriter.XMLwriter):
                 j = 0  # For indexing the col data.
                 for col in range(first_col, last_col + 1):
                     if i < len(data) and j < len(data[i]):
-                        token = data[i][j]
-                        if j in col_formats:
-                            self._write(row, col, token, col_formats[j])
-                        else:
-                            self._write(row, col, token, None)
-                    j += 1
+                        # Stop incrementing col index if column with formula
+                        if col not in col_formulas:
+                            token = data[i][j]
+                            if j in col_formats:
+                                self._write(row, col, token, col_formats[j])
+                            else:
+                                self._write(row, col, token, None)
+                            j += 1
+                    else:
+                        j += 1
                 i += 1
 
         # Store the table data.
