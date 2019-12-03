@@ -2773,18 +2773,21 @@ class Worksheet(xmlwriter.XMLwriter):
             i = 0  # For indexing the row data.
             for row in range(first_data_row, last_data_row + 1):
                 j = 0  # For indexing the col data.
+                k = 0  # For indexing the col id.
                 for col in range(first_col, last_col + 1):
                     if i < len(data) and j < len(data[i]):
-                        # Stop incrementing col index if column with formula
+                        # To avoid writing value if column contains a formula.
                         if col not in col_formulas:
                             token = data[i][j]
-                            if j in col_formats:
-                                self._write(row, col, token, col_formats[j])
+                            if k in col_formats:
+                                self._write(row, col, token,
+                                            col_formats[k])
                             else:
                                 self._write(row, col, token, None)
+                            # Increment index of col data if column
+                            # does not contain any formula
                             j += 1
-                    else:
-                        j += 1
+                    k += 1
                 i += 1
 
         # Store the table data.
