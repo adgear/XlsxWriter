@@ -1,0 +1,16 @@
+metadata:
+  name: "XlsxWriter"
+  description: "Repository to augment XlsxWriter python module functionalities."
+  labels:
+    practice: "adopsbi"
+    jira-project: "AOD"
+    jira-board: "324"
+    sensitive: "false"
+  links:
+    - url: "https://adgear.atlassian.net/wiki/spaces/MAOA/pages/18226053716/Dev+Ops+Team"
+      title: "Dev Ops Team"
+
+spec:
+  owner: "adops-bi"
+  type: "tool"
+  lifecycle: "production"
