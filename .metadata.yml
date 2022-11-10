@@ -11,6 +11,6 @@ metadata:
       title: "Dev Ops Team"
 
 spec:
-  owner: "adops-bi"
+  owner: "prac-adops-bi"
   type: "tool"
   lifecycle: "production"
