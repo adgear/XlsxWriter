@@ -13,4 +13,4 @@ metadata:
 spec:
   owner: "prac-adops-bi"
   type: "tool"
-  lifecycle: "production"
+  lifecycle: "decommissioned"
